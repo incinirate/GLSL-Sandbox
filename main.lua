@@ -64,6 +64,9 @@ end
 local function loadShader(filename)
   if love.filesystem.exists(filename) then
     local shad = grabContent(filename)
+    if not shad then
+      return
+    end
     file = {}
     while #shad > 0 do
       local nextP, endP = shad:find("\r?\n")
@@ -85,6 +88,9 @@ local function loadShader(filename)
 end
 
 local function saveShader(filename)
+  if filename:match("%S") == "" then
+    return
+  end
   love.filesystem.write(filename, table.concat(file, "\n"))
   lastSave = filename
 
