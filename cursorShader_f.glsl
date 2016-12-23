@@ -13,7 +13,7 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 gl_FragCoord) {
   float p = 0.5+0.5*sin(time);
   float l = length(q - vec2(0.5, (0.4)+(0.5-r)*(-1 + mod(time * 2, 2))))*(1/r);
   l = 1 - smoothstep(0.06, 1, l);
-  float las = sin(time * 3.14159268);
+  float las = sin(time * 3.14159265359);
   float la = (las*las);
   l *= la;
   c = 1 - clamp(0, 1, c);
