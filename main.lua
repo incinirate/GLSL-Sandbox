@@ -66,7 +66,7 @@ local function loadShader(filename)
     local shad = grabContent(filename)
     file = {}
     while #shad > 0 do
-      local nextP = shad:find("\n")
+      local nextP, endP = shad:find("\r?\n")
       if not nextP then
         if #shad > 0 then
           table.insert(file, shad)
@@ -74,7 +74,7 @@ local function loadShader(filename)
         break
       end
       table.insert(file, shad:sub(1, nextP - 1))
-      shad = shad:sub(nextP + 1)
+      shad = shad:sub(endP + 1)
     end
     line = 1
     linePos = 0
